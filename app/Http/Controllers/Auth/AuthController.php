@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -28,6 +30,8 @@ class AuthController extends Controller
      *
      * @return void
      */
+
+    public $redirectPath = 'flyer/create';
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'getLogout']);
