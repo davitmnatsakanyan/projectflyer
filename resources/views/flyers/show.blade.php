@@ -20,7 +20,7 @@
         </div>
     </div>
     <hr>
-    <h2>Add Your Photos</h2>
+    <h2>Add Your Photos Here</h2>
     <div class="row">
         <div class="col-md-12">
         {!! Form::open(array('url' => $flyer->zip.'/'.$flyer->street.'/photos', 'method' => 'POST', 'class' => 'dropzone', 'id' => 'addPhotosFlyer')) !!}
