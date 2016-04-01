@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Flyer;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -36,4 +37,17 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public  function owns($relation){
+        return $relation->user_id == $this->id;
+    }
+
+    public  function  flyers(){
+        return $this->hasMany(Flyer::class);
+    }
+
+    public  function publish(Flyer $flyer){
+       return  $this->flyers()->save($flyer);
+    }
+
 }

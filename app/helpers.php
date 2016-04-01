@@ -6,3 +6,8 @@ function flash($title, $message) {
 
     return $flash->message($title, $message);
 }
+
+function flyer_path(App\Models\Flyer $flyer){
+
+    return $flyer->zip.'/'. $flyer->street;
+}

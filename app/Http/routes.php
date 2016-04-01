@@ -20,12 +20,9 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('home', function () {
-    return view('home');
-});
+Route::get('/', 'PagesController@home');
+
+Route::get('/home', 'PagesController@home');
 Route::resource('flyer', 'FlyersController');
 Route::get('{zip}/{street}', 'FlyersController@show');
-Route::post('{zip}/{street}/photos', 'FlyersController@addPhoto');
+Route::post('{zip}/{street}/photos', 'PhotosController@store');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,7 @@ class Flyer extends Model
         'description'
     ];
     public  function photos(){
-        return $this->hasMany('App\FlyerPhoto');
+        return $this->hasMany(Photo::class);
     }
 
     public static  function locatedAt($street, $zip){
@@ -24,7 +24,25 @@ class Flyer extends Model
         return static::where(['street' => $street, 'zip' => $zip ])->firstOrFail();
     }
 
-    public  function addPhoto(FlyerPhoto $photo){
+    public  function addPhoto(Photo $photo){
         return $this->photos()->save($photo);
+    }
+
+    /*
+     * A flyer is owned by user
+     */
+    public  function owner(){
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    /*
+     * Determin if the given user created the flyer
+     *
+     * @param User $user
+     * #return boolean
+     */
+    public  function ownedBy(User $user){
+
+        return $this->user_id == $user->id;
     }
 }
